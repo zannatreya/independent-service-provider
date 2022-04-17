@@ -3,9 +3,9 @@ import Service from '../Service/Service';
 import './Services.css';
 
 
-import hospital from '../../../images/hospital.jpg';
-import home from '../../../images/home.jpg';
-import online from '../../../images/online.jpg';
+import hospital from '../../../images/hospital.png';
+import home from '../../../images/home.png';
+import online from '../../../images/online.png';
 
 const services = [
     { id: 1, name: 'will smith', description: 'xyz', price: 570, img: hospital },

@@ -10,7 +10,7 @@ const Service = ({ service }) => {
     }
     return (
         <div className='service'>
-            <img src={img} alt="" />
+            <img src={img} height={200} alt="" />
             <h4>Name: {name}</h4>
             <p>Price: ${price}</p>
             <p><span>{description}</span></p>
