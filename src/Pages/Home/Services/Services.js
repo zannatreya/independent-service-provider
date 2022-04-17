@@ -8,9 +8,9 @@ import home from '../../../images/home.png';
 import online from '../../../images/online.png';
 
 const services = [
-    { id: 1, name: 'will smith', description: 'xyz', price: 570, img: hospital },
-    { id: 2, name: 'Chris Rock', description: 'xyz', price: 570, img: home },
-    { id: 3, name: 'Dwayne Rock', description: 'xyz', price: 570, img: online },
+    { id: 1, name: 'Hospital Service', description: 'xyz', price: 1000, img: hospital },
+    { id: 2, name: 'Home Service', description: 'xyz', price: 1570, img: home },
+    { id: 3, name: 'Online Service', description: 'xyz', price: 800, img: online },
 
 ];
 const Services = () => {
@@ -18,7 +18,7 @@ const Services = () => {
     return (
         <div id='services' className='container'>
             <div className="row">
-                <h2 className='service-title'>Our Services </h2>
+                <h2 className='service-title py-5'>Our Services </h2>
                 <div className='services-container'>
                     {
                         services.map(service => <Service

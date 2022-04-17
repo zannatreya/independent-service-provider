@@ -9,12 +9,12 @@ const Service = ({ service }) => {
         navigate(`/service/${id}`);
     }
     return (
-        <div className='service'>
+        <div className='service mb-5'>
             <img src={img} height={200} alt="" />
-            <h4>Name: {name}</h4>
+            <h4> {name}</h4>
             <p>Price: ${price}</p>
             <p><span>{description}</span></p>
-            <button onClick={() => navigateToServiceDetail(id)}>Book: {name}</button>
+            <button className='btn' onClick={() => navigateToServiceDetail(id)}>{name}</button>
         </div>
     );
 };
