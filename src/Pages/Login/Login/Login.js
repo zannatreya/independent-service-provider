@@ -100,7 +100,7 @@ const Login = () => {
                 {/* {hookError && <p className="error-message">{hookError?.message}</p>} */}
                 <ToastContainer />
 
-                <p>Don't have an account? <Link to="/signup">Sign up first</Link> </p>
+                <p>Don't have an account? <Link to="/signup" className=' text-decoration-none pe-auto'>Sign up first</Link> </p>
             </form>
 
             <button onClick={() => signInWithGoogle()}>Google</button>
