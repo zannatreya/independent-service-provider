@@ -1,109 +1,75 @@
-import React, { useEffect, useState } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import React, { useRef } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
+import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.css';
 
 const Login = () => {
-    const [userInfo, setUserInfo] = useState({
-        email: "",
-        password: "",
-    })
-    const [errors, setErrors] = useState({
-        email: "",
-        password: "",
-        general: "",
-    })
-
-    const [signInWithEmail, user, loading, hookError] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle, googleUser, loading2, googleError] = useSignInWithGoogle(auth);
-
-    const handleEmailChange = (e) => {
-        const emailRegex = /\S+@\S+\.\S+/;
-        const validEmail = emailRegex.test(e.target.value);
-
-        if (validEmail) {
-            setUserInfo({ ...userInfo, email: e.target.value })
-            setErrors({ ...errors, email: "" })
-        } else {
-            setErrors({ ...errors, email: "Invalid email" })
-            setUserInfo({ ...userInfo, email: "" })
-        }
-
-
-
-        // setEmail(e.target.value);
-    }
-    const handlePasswordChange = (e) => {
-        const passwordRegex = /.{6,}/;
-        const validPassword = passwordRegex.test(e.target.value);
-
-        if (validPassword) {
-            setUserInfo({ ...userInfo, password: e.target.value });
-            setErrors({ ...errors, password: "" });
-        } else {
-            setErrors({ ...errors, password: "Minimum 6 characters!" });
-            setUserInfo({ ...userInfo, password: "" })
-        }
-
-    }
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-
-        console.log(userInfo)
-
-        signInWithEmail(userInfo.email, userInfo.password);
-
-    }
-
+    const emailRef = useRef('');
+    const passwordRef = useRef('');
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
 
-    useEffect(() => {
-        if (user) {
-            navigate(from);
+    let from = location.state?.from?.pathname || "/";
+
+    let errorElement;
+    const [
+        signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
+    }
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+        console.log(email, password);
+        signInWithEmailAndPassword(email, password);
+    }
+    if (user) {
+        navigate(from, { replace: true });
+    }
+
+    if (loading || sending) {
+        return <Loading></Loading>
+    }
+    // const navigateRegister = event => {
+    //     navigate('/register');
+    // }
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
         }
-    }, [user]);
-
-    useEffect(() => {
-        const error = hookError || googleError;
-        if (error) {
-            switch (error?.code) {
-                case "auth/invalid-email":
-                    toast("Invalid email provided, please provide a valid email");
-                    break;
-
-                case "auth/invalid-password":
-                    toast("Wrong password. Intruder!!")
-                    break;
-                default:
-                    toast("something went wrong")
-            }
+        else {
+            toast('Please Enter your email address');
         }
-    }, [hookError, googleError])
-
+    }
     return (
         <div className="login-container">
             <div className="login-title">LOGIN</div>
-            <form className="login-form" onSubmit={handleLogin}>
-                <input type="text" placeholder="Your Email" onChange={handleEmailChange} />
-                {errors?.email && <p className="error-message">{errors.email}</p>}
-                <input type="password" placeholder="password" onChange={handlePasswordChange} />
-                {errors?.password && <p className="error-message">{errors.password}</p>}
+            <form className="login-form" onSubmit={handleSubmit}>
+                <input type="text" ref={emailRef} placeholder="Your Email" />
+                <input type="password" ref={passwordRef} placeholder="password" />
                 <button>Login</button>
 
-                {/* {error && <p className="error-message">{error}</p> } */}
-                {/* {hookError && <p className="error-message">{hookError?.message}</p>} */}
-                <ToastContainer />
 
                 <p>Don't have an account? <Link to="/signup" className=' text-decoration-none pe-auto'>Sign up first</Link> </p>
+                <p>Forget Password? <button className='btn btn-link text-primary bg-light pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button> </p>
+                {errorElement}
             </form>
 
-            <button onClick={() => signInWithGoogle()}>Google</button>
+            <SocialLogin></SocialLogin>
+            <ToastContainer />
+
         </div>
     );
 };

@@ -9,6 +9,7 @@ import Login from './Pages/Login/Login/Login';
 import CheckOut from './Pages/Checkout/CheckOut/CheckOut';
 import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
 import Signup from './Pages/Login/Signup/Signup';
+import Blogs from './Pages/Home/Blogs/Blogs';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           </RequireAuth>
         }></Route>
         <Route path="/about" element={<About />} />
+        <Route path="/blogs" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>

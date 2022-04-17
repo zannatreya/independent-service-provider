@@ -21,7 +21,7 @@ const Signup = () => {
 
 
     const [createUserWithEmailAndPassword, user, loading, hookError] =
-        useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+        useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true, sendPasswordResetEmail: true });
 
     const handleEmailChange = (e) => {
         const emailRegex = /\S+@\S+\.\S+/;
