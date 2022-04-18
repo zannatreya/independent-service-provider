@@ -1,19 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Service from '../Service/Service';
 import './Services.css';
 
-
-import hospital from '../../../images/hospital.png';
-import home from '../../../images/home.png';
-import online from '../../../images/online.png';
-
-const services = [
-    { id: 1, name: 'Hospital Service', description: 'xyz', price: 1000, img: hospital },
-    { id: 2, name: 'Home Service', description: 'xyz', price: 1570, img: home },
-    { id: 3, name: 'Online Service', description: 'xyz', price: 800, img: online },
-
-];
 const Services = () => {
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        fetch('services.json')
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
 
     return (
         <div id='services' className='container'>

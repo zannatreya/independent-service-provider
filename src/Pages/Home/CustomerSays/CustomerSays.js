@@ -15,7 +15,7 @@ const CustomerSays = () => {
                     <div className='customer-says mt-5'>
                         <div className='happy-client'>
                             <div className='client-say'>
-                                <div className='d-flex justify-contebt-center single-pic'>
+                                <div className='d-flex justify-content-center single-pic'>
                                     <img src={customer1} alt="" className='img-fluid client-pic' />
                                 </div>
                                 <div className='text-center client-info'>
