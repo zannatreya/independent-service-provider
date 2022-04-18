@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+# Getting Started with Doctorolla
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Dream shop github link](https://github.com/programming-hero-web-course-4/independent-service-provider-zannatreya).
+
+This project was bootstrapped with [Dream shop live site link](https://individual-service-provider.web.app/).
+
+## Features
+
+- In this project,there are 5 nav link.Home,Services,Blogs,about,Login.
+- In the home page,I create first section with image carousel and article,second section with services and third section with customer review.
+- In servicess page,there are three customer reviews and one button.
+- In blogs page,there are 3 ques and answer and also add about page.
+- I also use react route and Bootstraps.
 
 ## Available Scripts
 
