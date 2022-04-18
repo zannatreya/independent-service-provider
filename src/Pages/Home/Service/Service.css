@@ -6,7 +6,7 @@
     box-shadow: 4px 4px 12px #c5c5c5,
         -4px -4px 12px #ffffff;
     /* background-color: #eebefa; */
-    background-color: #bac8ff;
+    /* background-color: #bac8ff; */
 
 }
 
@@ -50,4 +50,17 @@
     100% {
         background-position: 0% 50%;
     }
+}
+
+.q-1 {
+    background-color: #eebefa;
+}
+
+.q-2 {
+    background-color: #bac8ff;
+}
+
+.q-3 {
+    background-color: #eebefa;
+
 }
