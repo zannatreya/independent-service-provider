@@ -1,8 +1,8 @@
 # Getting Started with Doctorolla
 
-This project was bootstrapped with [Dream shop github link](https://github.com/programming-hero-web-course-4/independent-service-provider-zannatreya).
+This project was bootstrapped with [Doctorolla github link](https://github.com/programming-hero-web-course-4/independent-service-provider-zannatreya).
 
-This project was bootstrapped with [Dream shop live site link](https://individual-service-provider.web.app/).
+This project was bootstrapped with [Doctorolla live site link](https://individual-service-provider.web.app/).
 
 ## Features
 
